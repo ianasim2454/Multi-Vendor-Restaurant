@@ -55,6 +55,9 @@ $(function(){
                   }) 
     });
   });
+
+
+
   $(function(){
     $(document).on('click','#processingOrder',function(e){
         e.preventDefault();
@@ -62,7 +65,7 @@ $(function(){
   
                   Swal.fire({
                     title: 'Are you sure?',
-                    text: "Processing This Data?",
+                    text: "Processing This Order?",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -73,13 +76,15 @@ $(function(){
                       window.location.href = link
                       Swal.fire(
                         'Processing!',
-                        'Your file has been Processing.',
+                        'Your Order has been Processing.',
                         'success'
                       )
                     }
                   }) 
     });
   });
+
+  
   $(function(){
     $(document).on('click','#deliverdOrder',function(e){
         e.preventDefault();
@@ -87,7 +92,7 @@ $(function(){
   
                   Swal.fire({
                     title: 'Are you sure?',
-                    text: "deliverd This Data?",
+                    text: "Deliverd This Order?",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -98,7 +103,7 @@ $(function(){
                       window.location.href = link
                       Swal.fire(
                         'deliverd!',
-                        'Your file has been deliverd.',
+                        'Your Order has been deliverd.',
                         'success'
                       )
                     }

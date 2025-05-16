@@ -155,7 +155,7 @@ Route::middleware('admin')->group(function(){
 
     Route::controller(ManageOrderController::class)->group(function(){
         Route::get('/admin/order/details/{id}', 'AdminOrderDetails')->name('admin.order.details');  
-        Route::get('/pening_to_confirm/{id}', 'PendingToConfirm')->name('pening_to_confirm');
+        Route::get('/pending_to_confirm/{id}', 'PendingToConfirm')->name('pending_to_confirm');
         Route::get('/confirm_to_processing/{id}', 'ConfirmToProcessing')->name('confirm_to_processing'); 
         Route::get('/processing_to_deliverd/{id}', 'ProcessingToDiliverd')->name('processing_to_deliverd'); 
 
@@ -219,6 +219,12 @@ Route::middleware(['client','status'])->group(function(){
         Route::get('/edit/coupon/{id}','EditCoupon')->name('edit.coupon');
         Route::post('/update/coupon/{id}','UpdateCoupon')->name('update.coupon');
         Route::get('/delete/coupon/{id}','DeleteCoupon')->name('delete.coupon');
+    });
+
+
+    Route::controller(ManageOrderController::class)->group(function(){
+        Route::get('/all/client/orders', 'AllClientOrders')->name('all.client.orders'); 
+        Route::get('/client/order/details/{id}', 'ClientOrderDetails')->name('client.order.details'); 
     });
     
 });//end

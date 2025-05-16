@@ -70,11 +70,38 @@ class ManageOrderController extends Controller
     public function ProcessingToDiliverd($id){
         Order::find($id)->update(['status' => 'deliverd']);
         $notification = array(
-            'message' => 'Order Processing Successfully',
+            'message' => 'Order Delivered Successfully',
             'alert-type' => 'success'
         );
         return redirect()->route('deliverd.order')->with($notification);
     }
     //End Method 
+
+
+    //Client Manage Order
+    public function AllClientOrders(){
+        $clientId = Auth::guard('client')->id();
+
+        $orderItemGroupData = OrderItem::with(['product','order'])->where('client_id',$clientId)
+        ->orderBy('order_id','desc')
+        ->get()
+        ->groupBy('order_id');
+        return view('client.backend.order.all_orders',compact('orderItemGroupData'));
+    }
+    //End Method
+
+    public function ClientOrderDetails($id){
+        $order = Order::with('user')->where('id',$id)->first();
+        $orderItem = OrderItem::with('product')->where('order_id',$id)->orderBy('id','desc')->get();
+
+        $totalPrice = 0;
+        foreach($orderItem as $item){
+            $totalPrice += $item->price * $item->qty;
+        }
+
+        return view('client.backend.order.client_order_details',compact('order','orderItem','totalPrice'));
+
+    }
+     //End Method 
   
 }
