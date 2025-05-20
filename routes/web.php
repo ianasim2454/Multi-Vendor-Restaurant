@@ -38,7 +38,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/remove/wishList/{id}', 'RemoveWishList')->name('remove.wishlist');
     });
 
-
+ Route::controller(ManageController::class)->group(function(){
+        Route::get('/user/order/list', 'UserOrderList')->name('user.order.list');
+    });
   
 });
 

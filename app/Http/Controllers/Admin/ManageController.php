@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Admin;
 use Carbon\Carbon;
 use App\Models\City;
 use App\Models\Menu;
+use App\Models\Order;
 use App\Models\Banner;
 use App\Models\Client;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
@@ -276,5 +278,12 @@ class ManageController extends Controller
     }
 
 
+    //User Order Manage
+     public function UserOrderList(){
+        $userId = Auth::user()->id;
+        $allUserOrder = Order::where('user_id',$userId)->orderBy('id','desc')->get();
+        return view('frontend.dashboard.order.order_list',compact('allUserOrder'));
+    }
+      //End Method 
 
 }
