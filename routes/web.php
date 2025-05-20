@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
 
  Route::controller(ManageController::class)->group(function(){
         Route::get('/user/order/list', 'UserOrderList')->name('user.order.list');
+          Route::get('/user/order/details/{id}', 'UserOrderDetails')->name('user.order.details'); 
     });
   
 });
