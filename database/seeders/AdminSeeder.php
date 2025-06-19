@@ -16,8 +16,8 @@ class AdminSeeder extends Seeder
     {
         $obj=new Admin();
         $obj->name = 'Admin';
-        $obj->email = 'nasimadmin@gmail.com';
-        $obj->password = Hash::make('12345678');
+        $obj->email = 'admin1@gmail.com';
+        $obj->password = Hash::make('admin1@gmail.com');
         $obj->save();
     }
 }
