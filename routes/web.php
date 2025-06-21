@@ -1,21 +1,23 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\Client;
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\ManageController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Client\CouponController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Admin\ManageOrderController;
-use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Client\RestaurantController;
+use App\Http\Controllers\Client\ClientReportController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -238,6 +240,14 @@ Route::middleware(['client','status'])->group(function(){
     Route::controller(ManageOrderController::class)->group(function(){
         Route::get('/all/client/orders', 'AllClientOrders')->name('all.client.orders'); 
         Route::get('/client/order/details/{id}', 'ClientOrderDetails')->name('client.order.details'); 
+    });
+
+
+     Route::controller(ClientReportController::class)->group(function(){
+        Route::get('/client/all/reports', 'ClientAllReports')->name('client.all.reports'); 
+        Route::post('/client/search/bydate', 'ClientSearchByDate')->name('client.search.bydate');
+        Route::post('/admin/search/bymonth', 'AminSearchByMonth')->name('admin.search.bymonth');
+        Route::post('/admin/search/byyear', 'AminSearchByYear')->name('admin.search.byyear');
     });
     
 });//end
